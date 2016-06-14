@@ -1,0 +1,124 @@
+conn system/system
+
+
+CREATE TABLE CUSTOMERS(
+   ID   INT NOT NULL,
+   NAME VARCHAR (20) NOT NULL,
+   AGE INT NOT NULL,
+   ADDRESS CHAR (25),
+   SALARY   DECIMAL (18, 2),       
+   PRIMARY KEY (ID)
+);
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (1, 'Ramesh', 32, 'Ahmedabad', 2000.00 );
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (2, 'Khilan', 25, 'Delhi', 1500.00 );
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (3, 'kaushik', 23, 'Kota', 2000.00 );
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (4, 'Chaitali', 25, 'Mumbai', 6500.00 );
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (5, 'Hardik', 27, 'Bhopal', 8500.00 );
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (6, 'Komal', 22, 'MP', 4500.00 );
+
+
+set serveroutput on;
+
+create or replace procedure hello
+AS
+BEGIN
+	dbms_output.put_line('Hello World!');
+END;
+/
+
+
+declare
+	C_ID CUSTOMERS.ID%TYPE:=1;
+	STR varchar:='helloo';
+	num1 INTEGER :=5;
+	num2 REAL:= 10.000;
+	num3 DOUBLE PRECISION;
+	PI constant number:= 3.1416;        //constant declaration
+	TYPE NAME_ARRAY IS VARRAY(3) OF VARCHAR(10);          //ARRAY TYPE declaration
+	NAME NAME_ARRAY:= NAME_ARRAY('JOHN','MIKE','ALI');    //ARRAY declaration
+
+	FUNCTION findMax(x IN number, y IN number) 
+	RETURN number IS z number;
+	BEGIN
+	...
+	...
+	RETURN z;
+	END; 
+
+
+begin
+	SELECT NAME, ADDRESS, AGE, SALARY INTO NAME, ADDRESS, AGE, SALARY  INTO FROM CUSTOMERS
+	WHERE ID=C_ID;
+	dbms_output.put_line(NAME ||AGE || SALARY);
+	num1 := num2 + num3;
+	dbms_output.put_line(STR || num1); 
+	/*
+		comment here
+	*/
+
+	IF    (CONDITION1) THEN
+	       STATEMENT1;
+	ELSEIF(CONDITION2) THEN
+	       STATEMENT2;
+	ELSEIF(CONDITION3) THEN
+	       STATEMENT3;
+	ELSE
+	       STATEMENT4;
+	END IF;
+
+
+	LOOP
+	    dbms_output.put_line(NUM1);
+	    NUM1:=NUM1-1;
+	    IF NUM1<1 THEN
+		EXIT;
+	    END IF;
+	END LOOP;
+	
+	X:=5;
+
+	LOOP
+	    dbms_output.put_line(NUM1);
+	    NUM1:=NUM1-1;
+	    EXIT WHEN X<1;
+	END LOOP;
+
+	FOR X IN 10..20 LOOP
+	    dbms_output.put_line(X);
+	END LOOP;
+
+	X:=5;
+	
+	WHILE X>0 LOOP
+	    dbms_output.put_line(X);
+	    X:=X-1;
+	END LOOP;
+
+	
+	X:=NAME.COUNT;
+	FOR I IN 1..X LOOP
+	dbms_output.put_line(NAME(I));
+	END LOOP;
+
+	Hello;                              // executing Procedure  hello. 
+	
+	
+
+end;
+/
+
+
+
+DROP PROCEDURE HELLO;
